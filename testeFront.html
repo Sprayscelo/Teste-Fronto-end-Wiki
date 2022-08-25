@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.3"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+<body>
+    <div id="app">
+        <menu-bar></menu-bar>
+        <router-view>
+        </router-view>
+    </div>
+
+    <template id="menu">
+        <header>
+            <div>
+                <router-link class="links" to="/listarUsuarios"> Listar usuarios </router-link>
+                <router-link class="links" to="/cadastrarUsuarios"> Cadastrar usuarios</router-link >
+                <router-link class="links" to="/" > Editar usuarios </router-link >
+                <router-link class="links" to="/"> Excluir usuarios </router-link >
+            </div>
+        </header>
+    </template>
+    
+    <template id="listarUsuarios">
+        <div id="listaUsuariosContainer">
+            <div class="listaDeUsuarios neonButton">
+                <div class="detalhesDeUsuarios" :data-id="user.id" v-for="user in users">
+                    <img :src="user.avatar" alt="No Image">
+                    <p>{{user.first_name}} {{user.last_name}}</p>
+                    <p>{{ user.email }}</p>
+                </div>
+            </div>
+            <div class="neonButton">
+                <button @click="listarUsuarios(1)"> 1 </button>
+                <button @click="listarUsuarios(2)"> 2 </button>
+            </div>
+        </div>
+    </template>
+
+    <template id="cadastrarUsuarios"> 
+        <div id="cadastrarUsuariosContainer">
+            <form action="">
+                <label for="">
+                    <span> Primeiro Nome:</span> 
+                    <input type="text" name="" id="" v-model="users.first_name" required>
+                </label>
+                <label for="">
+                    <span> Segundo Nome:</span> 
+                    <input type="text" name="" id="" v-model="users.last_name" required>
+                </label>
+                <label for="">
+                    <span>Cargo:</span> 
+                    <input type="text" v-model="users.job" required>
+                </label>
+                <label for="">
+                    <span>Avatar:</span>
+                    <input type="text" name="" id="" v-model="users.avatar">
+                </label>
+                <label for="">
+                    <span>E-mail: </span>
+                    <input type="email" v-model="users.email">
+                </label>
+                <input @click="cadastrarUsuarios()" type="submit" value="Cadastrar">
+            </form>
+        </div>
+    </template>
+
+</body>
+</html>
+<script type="module" src="testeFront.js"></script>
+<script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
+<link rel="stylesheet" href="listarUsuarios.css">
+<link rel="stylesheet" href="cadastrarUsuarios.css">
+<link rel="stylesheet" href="editarUsuarios.css">
+<link rel="stylesheet" href="excluirUsuarios.css">
+<link rel="stylesheet" href="menuHeader.css">
+<link rel="stylesheet" href="footer.css">
